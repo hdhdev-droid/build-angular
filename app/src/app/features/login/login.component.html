@@ -1,0 +1,46 @@
+<div class="login-page">
+  <div class="login-card">
+    <h1>로그인</h1>
+    <p class="subtitle">계정 정보를 입력하세요</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="field">
+        <label for="email">이메일</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+        />
+        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+          <span class="error">올바른 이메일을 입력하세요.</span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="password">비밀번호</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="4자 이상"
+          autocomplete="current-password"
+        />
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <span class="error">비밀번호는 4자 이상이어야 합니다.</span>
+        }
+      </div>
+
+      @if (errorMessage) {
+        <p class="error-msg">{{ errorMessage }}</p>
+      }
+
+      <button type="submit" class="btn-primary" [disabled]="loginForm.invalid">
+        로그인
+      </button>
+    </form>
+
+    <p class="hint">데모: 이메일 형식과 비밀번호 4자 이상이면 로그인됩니다.</p>
+  </div>
+</div>

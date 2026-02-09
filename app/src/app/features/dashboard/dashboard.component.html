@@ -1,0 +1,18 @@
+<div class="dashboard">
+  <header class="header">
+    <h1>대시보드</h1>
+    @if (isLoggedIn(); as loggedIn) {
+      <div class="user-menu">
+        <span class="user-name">{{ user()?.name ?? user()?.email }}</span>
+        <button type="button" class="btn-logout" (click)="logout()">로그아웃</button>
+      </div>
+    }
+  </header>
+
+  <main class="content">
+    @if (user(); as u) {
+      <p class="welcome">안녕하세요, <strong>{{ u.name ?? u.email }}</strong>님.</p>
+      <p class="desc">로그인에 성공했습니다. 이 화면은 인증된 사용자만 볼 수 있습니다.</p>
+    }
+  </main>
+</div>
